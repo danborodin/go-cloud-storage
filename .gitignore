@@ -13,3 +13,11 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+#
+go.work
+go.work.sum
+docker-compose.yml
+scripts/createMongoUser.sh
+auth/.env
+storage

@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    #    environment:
+    #      MONGO_INIT_ROOT_USERNAME: root
+    #      MONGO_INIT_ROOT_PASSWORD: example
+    command: [--auth]
+    networks:
+      - cloud-storage
+    volumes:
+      - cloud-storage:/data/db
+      - "./scripts/createMongoUser.sh:/scripts/createMongoUser.sh"
+      - "./configs/mongod.conf:/etc/mongod.conf"
+
+  auth-app:
+    build: ./auth/
+    container_name: auth-app
+    ports:
+      - "6969:6969"
+    depends_on:
+      - mongo
+    networks:
+      cloud-storage:
+    volumes:
+      - cloud-storage:/var/log
+
+volumes:
+  cloud-storage:
+    name: cloud-storage
+    external: true
+
+networks:
+  cloud-storage:
+    name: cloud-storage
+    external: true
