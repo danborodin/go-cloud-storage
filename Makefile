@@ -3,7 +3,7 @@ setup:
 	docker network create cloud-storage
 	docker compose up mongo -d
 	docker exec -it mongo /bin/sh /scripts/createMongoUser.sh
-	docker compose stop	mongo
+	docker compose stop mongo
 
 build:
 	docker compose build
