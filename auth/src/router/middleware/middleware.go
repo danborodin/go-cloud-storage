@@ -1,8 +1,9 @@
 package middleware
 
 import (
-	"github.com/danborodin/go-logd"
 	"net/http"
+
+	"github.com/danborodin/go-logd"
 )
 
 type Middleware struct {

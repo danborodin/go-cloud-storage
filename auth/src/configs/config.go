@@ -1,10 +1,11 @@
 package configs
 
 import (
-	"github.com/danborodin/go-logd"
-	"github.com/joho/godotenv"
 	"log"
 	"os"
+
+	"github.com/danborodin/go-logd"
+	"github.com/joho/godotenv"
 )
 
 // add log pointer

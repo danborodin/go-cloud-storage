@@ -8,13 +8,14 @@ import (
 	"auth/src/services"
 	"context"
 	"flag"
-	"github.com/danborodin/go-logd"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/danborodin/go-logd"
 )
 
 func init() {

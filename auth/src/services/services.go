@@ -4,6 +4,7 @@ import (
 	"auth/src/repository/database"
 	"auth/src/services/user"
 	"auth/src/services/vault"
+
 	"github.com/danborodin/go-logd"
 )
 

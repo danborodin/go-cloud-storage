@@ -3,9 +3,10 @@ package vault
 import (
 	"auth/src/configs"
 	"crypto/rand"
+	"math/big"
+
 	"github.com/danborodin/go-logd"
 	"golang.org/x/crypto/bcrypt"
-	"math/big"
 )
 
 type Service struct {

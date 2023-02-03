@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"auth/src/services"
+
 	"github.com/danborodin/go-logd"
 )
 

@@ -3,8 +3,9 @@ package router
 import (
 	"auth/src/handlers"
 	"auth/src/router/middleware"
-	"github.com/danborodin/go-logd"
 	"net/http"
+
+	"github.com/danborodin/go-logd"
 )
 
 var md *middleware.Middleware

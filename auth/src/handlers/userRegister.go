@@ -4,8 +4,9 @@ import (
 	"auth/src/services/user"
 	"auth/src/types"
 	"encoding/json"
-	"github.com/danborodin/go-logd"
 	"net/http"
+
+	"github.com/danborodin/go-logd"
 )
 
 type RegisterHandler struct {
