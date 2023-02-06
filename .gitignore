@@ -14,7 +14,7 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-#
+# project related
 go.work
 go.work.sum
 docker-compose.yml
