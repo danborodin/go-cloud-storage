@@ -57,9 +57,13 @@ func main() {
 	//create services
 	srvc := services.NewServices(l, db)
 
-	//createhandlers and router
-	rhandler := handlers.NewRouterHandlers(l, srvc)
+	//create handlers and router
+	rhandler := handlers.NewHandlers(l, srvc)
 	router := router.CreateRouter(l, rhandler)
+
+	//handle auto delete for unverified users
+	go srvc.UserService.ClearUnverifiedUsers()
+	//
 
 	//create server
 	server := &http.Server{

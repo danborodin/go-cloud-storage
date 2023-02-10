@@ -1,5 +1,7 @@
 github.com/danborodin/go-logd v0.0.0-20230127192331-b144544882bf h1:wRwxs3o8RrUb3m3b1cyR9lE1Bwfv0Q8pe6jrM+wLTI4=
 github.com/danborodin/go-logd v0.0.0-20230127192331-b144544882bf/go.mod h1:iQpk67NK0SgVtOappwshJHnfu6QDe0cnHAzsPSGcS0c=
+github.com/danborodin/go-logd v0.0.0-20230207153632-c2df40215c2e h1:dzqe/y3NP58+ijgM8e6EytpbU4oqIo7kk9/4msiaNVw=
+github.com/danborodin/go-logd v0.0.0-20230207153632-c2df40215c2e/go.mod h1:OD4JDeFl6eSJrR8EEDyyH+VZq0uL1vEL4+EYdAk/dKw=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

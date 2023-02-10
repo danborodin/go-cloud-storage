@@ -11,12 +11,20 @@ import (
 // add log pointer
 type Config struct {
 	l     *logd.Logger
+	Host  string
 	Mongo struct {
 		Uri      string
 		Database string
 	}
+	Gmail struct {
+		Host     string
+		Port     string
+		Pwd      string
+		Username string
+	}
 	//
-	Pepper string
+	Pepper       string
+	EmailVerTime string
 }
 
 var Conf *Config
@@ -37,6 +45,9 @@ func New(l *logd.Logger) *Config {
 func InitConfig(conf *Config) {
 	loadMongoConfig(conf)
 	loadPepper(conf)
+	loadGmail(conf)
+	//
+	conf.EmailVerTime = os.Getenv("EMAIL_VERIFICATION_TIME")
 }
 
 func loadMongoConfig(conf *Config) {
@@ -46,4 +57,11 @@ func loadMongoConfig(conf *Config) {
 
 func loadPepper(conf *Config) {
 	conf.Pepper = os.Getenv("PEPPER")
+}
+
+func loadGmail(conf *Config) {
+	conf.Gmail.Host = os.Getenv("GMAIL_SMTP_HOST")
+	conf.Gmail.Port = os.Getenv("GMAIL_SMTP_PORT")
+	conf.Gmail.Pwd = os.Getenv("GMAIL_SMTP_PASSWORD")
+	conf.Gmail.Username = os.Getenv("GMAIL_SMTP_USERNAME")
 }

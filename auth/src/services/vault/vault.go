@@ -19,28 +19,28 @@ func NewVaultService(l *logd.Logger) *Service {
 	}
 }
 
-func (vs *Service) Encrypt(password string) ([]byte, []byte, error) {
+func (s Service) EncryptPwd(password string) ([]byte, []byte, error) {
 
 	pepper := configs.Conf.Pepper
-	salt, err := vs.generateSalt()
+	salt, err := s.generateSalt()
 	if err != nil {
-		vs.l.ErrPrintln(err)
+		s.l.ErrPrintln(err)
 		return nil, nil, err
 	}
 
-	// pepper is 30 bytes, password is min 10 max 22 bytes, salt is min 1 max 20 bytes, total 72 bytes
+	// pepper is 30 bytes, password is min 10 max 22 bytes, salt is min 1 max 20 bytes, total is max 72 bytes
 	newPass := pepper + password + string(salt)
 
 	hashedPass, err := bcrypt.GenerateFromPassword([]byte(newPass), bcrypt.DefaultCost)
 	if err != nil {
-		vs.l.ErrPrintln(err)
+		s.l.ErrPrintln(err)
 		return nil, nil, err
 	}
 
 	return hashedPass, salt, nil
 }
 
-func (vs *Service) generateSalt() ([]byte, error) {
+func (s Service) generateSalt() ([]byte, error) {
 	var maxLength = new(big.Int)
 	var maxValue = new(big.Int)
 	var base = new(big.Int)
@@ -65,8 +65,25 @@ func (vs *Service) generateSalt() ([]byte, error) {
 	}
 
 	if len(salt) == 0 {
-		return vs.generateSalt()
+		return s.generateSalt()
 	}
 
 	return salt, nil
+}
+
+// maybe optimize this
+func (s Service) GenCode() (uint64, error) {
+	max := new(big.Int)
+	max.SetInt64(9)
+	var code int64
+	for i := 1; i <= 100000; i *= 10 {
+		digit, err := rand.Int(rand.Reader, max)
+		if err != nil {
+			return 0, err
+		}
+		d := digit.Int64()
+		code = code + (d * int64(i))
+	}
+
+	return uint64(code), nil
 }
