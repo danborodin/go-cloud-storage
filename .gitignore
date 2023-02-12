@@ -15,11 +15,13 @@
 # vendor/
 
 # project related
+storage
 go.work
 go.work.sum
 docker-compose.yml
 scripts/createMongoUser.sh
 auth/.env
-storage
 auth/dev.env
 Makefile
+Makefile.linux
+Makefile.macOs
