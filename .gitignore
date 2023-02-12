@@ -23,5 +23,3 @@ scripts/createMongoUser.sh
 auth/.env
 auth/dev.env
 Makefile
-Makefile.linux
-Makefile.macOs

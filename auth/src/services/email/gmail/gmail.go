@@ -36,7 +36,3 @@ func (s Service) SendEmail(subject, text string, to []string, contentType string
 
 	return nil
 }
-
-func (s Service) ParseTemplate() {
-
-}

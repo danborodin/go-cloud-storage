@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"auth/src/services/email"
+	"auth/src/services/email/templates"
 	"auth/src/services/user"
 	"auth/src/types"
 	"bytes"
@@ -54,11 +55,11 @@ func (h RegisterHandler) post(w http.ResponseWriter, r *http.Request) error {
 		return err
 	}
 
-	t, err := template.New("confirmationCode.html").ParseFiles("src/services/email/templates/confirmationCode.html")
+	t, err := template.New("registrationCode.html").Parse(string(templates.RegistrationCode))
 	if err != nil {
 		return err
 	}
-	data := struct {
+	email := struct {
 		Username string
 		Code     string
 	}{
@@ -67,7 +68,7 @@ func (h RegisterHandler) post(w http.ResponseWriter, r *http.Request) error {
 	}
 
 	var buf bytes.Buffer
-	err = t.Execute(&buf, data)
+	err = t.Execute(&buf, email)
 	if err != nil {
 		return err
 	}
