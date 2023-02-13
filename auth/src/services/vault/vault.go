@@ -4,6 +4,7 @@ import (
 	"auth/src/configs"
 	"crypto/rand"
 	"math/big"
+	"strconv"
 
 	"github.com/danborodin/go-logd"
 	"golang.org/x/crypto/bcrypt"
@@ -72,18 +73,20 @@ func (s Service) generateSalt() ([]byte, error) {
 }
 
 // maybe optimize this
+// add tests for this!!!
+// formula used: random(max - min) + min
 func (s Service) GenCode() (uint64, error) {
 	max := new(big.Int)
-	max.SetInt64(9)
-	var code int64
-	for i := 1; i <= 100000; i *= 10 {
-		digit, err := rand.Int(rand.Reader, max)
-		if err != nil {
-			return 0, err
-		}
-		d := digit.Int64()
-		code = code + (d * int64(i))
+	max.SetInt64(999999)
+	min := new(big.Int)
+	min.SetInt64(100000)
+
+	code, err := rand.Int(rand.Reader, max.Sub(max, min))
+	if err != nil {
+		return 0, err
 	}
 
-	return uint64(code), nil
+	code.Add(code, min)
+
+	return code.Uint64(), nil
 }
