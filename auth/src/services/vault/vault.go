@@ -90,3 +90,25 @@ func (s Service) GenCode() (uint64, error) {
 
 	return code.Uint64(), nil
 }
+
+func (s Service) EncryptCode(code uint64) ([]byte, error) {
+	c := []byte(strconv.Itoa(int(code)))
+	hashedCode, err := bcrypt.GenerateFromPassword(c, bcrypt.DefaultCost)
+	if err != nil {
+		s.l.ErrPrintln(err)
+		return nil, err
+	}
+
+	return hashedCode, err
+}
+
+// return true if code is corect
+func (s Service) VerifyCode(realCode string, code uint64) (bool, error) {
+	codeStr := []byte(strconv.Itoa(int(code)))
+	err := bcrypt.CompareHashAndPassword([]byte(realCode), codeStr)
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
